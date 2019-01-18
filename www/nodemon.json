@@ -1,0 +1,8 @@
+{
+    "env": {
+        "PORT": "3000",
+        "MONGO_USER": "kweebec",
+        "MONGO_PASSWORD": "Adel116almir",
+        "MONGO_DB": "app"
+    }
+}
