@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 const graphQlSchema = require('./graphql/schema/index');
@@ -10,26 +11,8 @@ const isAuth = require('./middleware/is-auth');
 const app = express();
 
 app.use(bodyParser.json());
-
-app.use(isAuth);
-
-app.disable('x-powered-by');
-
-switch(app.get('env')){
-  case 'development':
-    // сжатое многоцветное журналирование для
-    // разработки
-    app.use(require('morgan')('dev'));
-    break;
-  case 'production':
-    // модуль 'express-logger' поддерживает ежедневное
-    // чередование файлов журналов
-    app.use(require('express-logger')({
-    path: __dirname + '/log/requests.log'
-    }));
-  break;
- }
-
+app.use(isAuth); 
+app.use(cors())
 app.use(
   '/graphql',
   graphqlHttp({
@@ -39,22 +22,22 @@ app.use(
   })
 );
 
-// mongoose
-//   .connect(
-//     `mongodb://mongo:27017/kweebec`,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => {
-//     app.listen(3000);
-//     console.log('Проверка связи')
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   });
+mongoose
+  .connect(
+    `mongodb+srv://AdelNorberg:gWuN6ZKxA46tpL3y@cluster0-imrnn.mongodb.net/test?retryWrites=true`,
+    { useNewUrlParser: true }
+  )
+  .then(() => {
+    app.listen(3000);
+    console.log('Проверка связи')
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 
 app.listen((app.get('port'), () => {
-  console.log(`Express запущено в режиме ${app.get('env')}
-      на http://localhost:3000`);
+  console.log(`Express запущено в режиме ${app.get('env')}`);
 }));
 
 app.get('/about', (req, res) => {

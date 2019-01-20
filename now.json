@@ -1,6 +1,9 @@
 {
   "name": "kweebec-app",
   "version": 2,
-  "builds": [{ "src": "app.js", "use": "@now/node-server" }],
-  "routes": [{ "src": "/(.*)", "dest": "app.js" }]
+  "builds": [{ "src": "/api/app.js", "use": "@now/node-server" }],
+  "routes": [{ 
+    "src": "/(.*)",
+    "dest": "/api/app.js" 
+    }]
 }
