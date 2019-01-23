@@ -11,12 +11,41 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  createdEvents: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Event'
+  nickname: {
+    type: String,
+    default: null
+  },
+  balance: {
+    diamond: {
+      type: Number,
+      default: 5
+    },
+    coin: {
+      type: Number,
+      default: 100
     }
-  ]
+  },
+  lvl: {
+    type: Number,
+  },
+  // friends: {
+  //   nickname: {
+  //     type: [Number],
+
+  //   },
+  //   urlAvatar: {
+  //     type: String
+  //   },
+
+  // },
+  // groups: {
+  //   type: [Number],
+  //   default: []
+  // },
+  notifications: {
+    type: [Number],
+    default: []
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

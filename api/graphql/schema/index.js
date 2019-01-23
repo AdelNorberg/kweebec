@@ -43,6 +43,10 @@ input UserInput {
   password: String!
 }
 
+type Result {
+  id: String
+}
+
 type RootQuery {
     events: [Event!]!
     bookings: [Booking!]!
@@ -56,8 +60,13 @@ type RootMutation {
     cancelBooking(bookingId: ID!): Event!
 }
 
+type Subscription {
+  somethingChanged: Result
+}
+
 schema {
     query: RootQuery
     mutation: RootMutation
+    subscription: Subscription
 }
 `);
