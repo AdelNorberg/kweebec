@@ -1,45 +1,67 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const User = require("../../models/user");
+const session = require("express-session");
+const ms = require("ms");
+const app = require("express")();
 
-const User = require('../../models/user');
+// session middleware
+app.use(
+  session({
+    name: "qid",
+    secret: `some-random-secret-here`,
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      maxAge: ms("1d")
+    }
+  })
+);
 
 module.exports = {
-  createUser: async args => {
+  isLogin: (args, req) => typeof req.session.user !== "undefined",
+  signup: async args => {
     try {
-      const existingUser = await User.findOne({ email: args.userInput.email });
+      const existingUser = await User.findOne({ email: args.email });
       if (existingUser) {
-        throw new Error('User exists already.');
+        throw new Error("User exists already.");
       }
-      const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+
+      const hashedPassword = await bcrypt.hash(args.password, 12);
 
       const user = new User({
-        email: args.userInput.email,
+        email: args.email,
         password: hashedPassword
       });
 
-      const result = await user.save();
+      await user.save();
 
-      return { ...result._doc, password: null, _id: result.id };
+      req.session.user = {
+        ...user
+      };
+
+      return true;
     } catch (err) {
       throw err;
     }
   },
-  login: async ({ email, password }) => {
+  login: async ({ email, password }, req) => {
     const user = await User.findOne({ email: email });
+    console.log(email + password);
     if (!user) {
-      throw new Error('User does not exist!');
+      throw new Error("User does not exist!");
     }
-    const isEqual = await bcrypt.compare(password, user.password);
-    if (!isEqual) {
-      throw new Error('Password is incorrect!');
-    }
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      'somesupersecretkey',
-      {
-        expiresIn: '1h'
+    if (user) {
+      if (await bcrypt.compareSync(password, user.password)) {
+        req.session.user = {
+          ...user
+        };
+        return { userId: user._id };
       }
-    );
-    return { userId: user.id, token: token, tokenExpiration: 1 };
+
+      throw new Error("Incorrect password.");
+    }
+
+    throw new Error("No Such User exists.");
   }
 };

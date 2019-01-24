@@ -1,6 +1,14 @@
 {
   "name": "kweebec-app",
   "version": 2,
-  "builds": [{ "src": "/api/app.js", "use": "@now/node-server" }],
-  "routes": [{ "src": "/graphql", "dest": "/api/app.js" }]
+  "builds": [
+    { "src": "/api/app.js", "use": "@now/node-server" },
+    { "src": "/app/public/**", "use": "@now/static" }
+  ],
+  "routes": [
+    { "src": "/graphql", "dest": "/api/app.js" },
+    { "src": "/fonts/avatar.jpg", "dest": "/app/public/fonts/avatar.jpg" },
+    { "src": "/bundle.js", "dest": "/app/public/bundle.js" },
+    { "src": "/.*", "dest": "/app/public/index.html" }
+  ]
 }

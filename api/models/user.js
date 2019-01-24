@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -15,6 +15,10 @@ const userSchema = new Schema({
     type: String,
     default: null
   },
+  date: {
+    type: Date,
+    default: Date.now
+  },
   balance: {
     diamond: {
       type: Number,
@@ -26,26 +30,24 @@ const userSchema = new Schema({
     }
   },
   lvl: {
-    type: Number,
+    type: Number
   },
-  // friends: {
-  //   nickname: {
-  //     type: [Number],
-
-  //   },
-  //   urlAvatar: {
-  //     type: String
-  //   },
-
-  // },
-  // groups: {
-  //   type: [Number],
-  //   default: []
-  // },
+  friends: {
+    nickname: {
+      type: [Number]
+    },
+    urlAvatar: {
+      type: String
+    }
+  },
+  groups: {
+    type: [Number],
+    default: []
+  },
   notifications: {
     type: [Number],
     default: []
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);
