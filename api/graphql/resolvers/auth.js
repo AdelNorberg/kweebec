@@ -1,26 +1,10 @@
 const bcrypt = require("bcryptjs");
 const User = require("../../models/user");
-const session = require("express-session");
-const ms = require("ms");
-const app = require("express")();
-
-// session middleware
-app.use(
-  session({
-    name: "qid",
-    secret: `some-random-secret-here`,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      secure: process.env.NODE_ENV === "production",
-      maxAge: ms("1d")
-    }
-  })
-);
 
 module.exports = {
-  isLogin: (args, req) => typeof req.session.user !== "undefined",
-  signup: async args => {
+  isLogin: (args, req) => typeof req.session.userId !== "undefined",
+  logout: (args, req) => typeof req.session.userId !== "undefined",
+  signup: async (args, req) => {
     try {
       const existingUser = await User.findOne({ email: args.email });
       if (existingUser) {
@@ -36,27 +20,27 @@ module.exports = {
 
       await user.save();
 
-      req.session.user = {
-        ...user
+      req.session.userId = {
+        ...user._doc._id
       };
 
-      return true;
+      return user;
     } catch (err) {
       throw err;
     }
   },
   login: async ({ email, password }, req) => {
     const user = await User.findOne({ email: email });
-    console.log(email + password);
     if (!user) {
       throw new Error("User does not exist!");
     }
     if (user) {
       if (await bcrypt.compareSync(password, user.password)) {
-        req.session.user = {
-          ...user
-        };
-        return { userId: user._id };
+        req.session.userId = user._doc._id;
+
+        console.log({ ...user._doc });
+
+        return { ...user._doc };
       }
 
       throw new Error("Incorrect password.");

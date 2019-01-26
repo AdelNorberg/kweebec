@@ -2,6 +2,43 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const friend = {
+  url: {
+    type: String
+  },
+  nickname: {
+    type: String
+  },
+  status: {
+    type: Number
+  }
+};
+
+const group = {
+  url: {
+    type: String
+  },
+  nickname: {
+    type: String
+  },
+  people: [Array]
+};
+
+const notification = {
+  url: {
+    type: String
+  },
+  nickname: {
+    type: String
+  },
+  header: {
+    type: String
+  },
+  description: {
+    type: String
+  }
+};
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -13,7 +50,7 @@ const userSchema = new Schema({
   },
   nickname: {
     type: String,
-    default: null
+    default: ""
   },
   date: {
     type: Date,
@@ -30,22 +67,19 @@ const userSchema = new Schema({
     }
   },
   lvl: {
-    type: Number
+    type: Number,
+    default: 1
   },
   friends: {
-    nickname: {
-      type: [Number]
-    },
-    urlAvatar: {
-      type: String
-    }
+    type: [friend],
+    default: []
   },
   groups: {
-    type: [Number],
+    type: [group],
     default: []
   },
   notifications: {
-    type: [Number],
+    type: [notification],
     default: []
   }
 });
