@@ -1,27 +1,27 @@
-const app = require("express")();
+const express = require("express");
 const bodyParser = require("body-parser");
+const socket = require("socket.io");
 const cors = require("cors");
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const path = require("path");
 
-require("./db");
-require("./graphql");
-
-//socketIO
-io.on("connection", socket => {
-  socket.emit("news", { hello: "world" });
-  socket.on("my other event", data => {
-    console.log(data);
-  });
+const app = express();
+const server = app.listen(3000, () => {
+  console.log("App запущено на 3000");
 });
+
+// Socket setup
+const io = socket(server);
+
+//Sessions and API
+require("./db")(app);
+require("./graphql")(app);
+require("./socket")(io);
 
 //Настройка сервера
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-//Включение сервера
-const port = process.env.PORT || 5000;
-app.listen(port);
-
-console.log("App is listening on port " + port);
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname + "/index.html"));
+});
