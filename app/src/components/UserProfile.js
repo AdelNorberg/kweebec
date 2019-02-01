@@ -13,7 +13,6 @@ const Wrapper = styled(BlockWrapper)`
   align-items: center;
   padding: 25px 40px;
 `;
-
 const UserAvatar = styled.div`
   background: url(${avatar}) no-repeat;
   background-size: cover;
@@ -21,17 +20,14 @@ const UserAvatar = styled.div`
   width: 150px;
   border-radius: 50%;
 `;
-
 const UserName = styled.span`
   margin-top: 10px;
 `;
-
 const UserBalance = styled.div`
   display: flex;
   font-size: 18px;
   margin-top: 14px;
 `;
-
 const UserBalanceItem = styled.div`
   display: flex;
   align-items: center;

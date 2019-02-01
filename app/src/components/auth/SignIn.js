@@ -1,4 +1,7 @@
 import React from "react";
+import * as actions from "../../actions";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import styled from "styled-components";
@@ -30,7 +33,7 @@ const RecoveryLink = styled(Link)`
 
 class SignIn extends React.Component {
   onSubmit = formValues => {
-    return formValues;
+    this.props.signup(formValues);
   };
 
   render() {
@@ -68,7 +71,13 @@ class SignIn extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: "signin",
-  validate,
-})(SignIn);
+export default compose(
+  connect(
+    null,
+    actions
+  ),
+  reduxForm({
+    form: "signin",
+    validate,
+  })
+)(SignIn);
