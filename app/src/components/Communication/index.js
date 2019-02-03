@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BlockWrapper } from "../../shared";
 import FriendItem from "./FriendItem";
@@ -45,15 +46,18 @@ const AdditionalSettings = styled.div`
   justify-content: center;
   padding: 19px 0;
 
-  svg {
+  & > * {
     margin-right: 15px;
+  }
+
+  & > *:last-child {
+    margin-right: 0px;
+  }
+
+  svg {
     fill: ${({ theme }) => theme.textSecondary};
     transition: all 0.6s ease;
     cursor: pointer;
-
-    &:last-child {
-      margin-right: 0px;
-    }
 
     &:hover {
       fill: #ccc;
@@ -81,7 +85,9 @@ const Communication = () => (
     </GroupsWrapper>
     <AdditionalSettings>
       <Info />
-      <Settings />
+      <Link to="/settings">
+        <Settings />
+      </Link>
     </AdditionalSettings>
   </Wrapper>
 );
