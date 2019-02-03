@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
+import Settings from "../pages/Settings";
 import SignIn from "../components/auth/SignIn";
 import SignUp from "../components/auth/SignUp";
 import Recovery from "../components/auth/Recovery/";
@@ -10,6 +11,7 @@ const Routes = () => (
   <BrowserRouter>
     <React.Fragment>
       <Route exact path="/" component={Home} />
+      <Route exact path="/settings" component={Settings} />
       <Route exact path="/sign_in" component={SignIn} />
       <Route exact path="/sign_up" component={SignUp} />
       <Route exact path="/recovery" component={Recovery} />
