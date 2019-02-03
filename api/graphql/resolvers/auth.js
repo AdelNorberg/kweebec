@@ -2,8 +2,12 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/user");
 
 module.exports = {
-  isLogin: (args, req) => typeof req.session.userId !== "undefined",
-  logout: (args, req) => typeof req.session.userId !== "undefined",
+  logout: async (args, req) => {
+    req.session.destroy();
+    return true;
+  },
+  isLogin: async (args, req) =>
+    req.session.userID !== undefined ? true : false,
   signup: async (args, req) => {
     try {
       const existingUser = await User.findOne({ email: args.email });
@@ -20,7 +24,7 @@ module.exports = {
 
       await user.save();
 
-      req.session.userId = {
+      req.session.userID = {
         ...user._doc._id
       };
 
@@ -36,9 +40,7 @@ module.exports = {
     }
     if (user) {
       if (await bcrypt.compareSync(password, user.password)) {
-        req.session.userId = user._doc._id;
-
-        console.log({ ...user._doc });
+        req.session.userID = user._doc._id;
 
         return { ...user._doc };
       }
