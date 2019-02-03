@@ -33,7 +33,7 @@ const RecoveryLink = styled(Link)`
 
 class SignIn extends React.Component {
   onSubmit = formValues => {
-    this.props.signup(formValues);
+    this.props.signin(formValues);
   };
 
   render() {
