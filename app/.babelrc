@@ -1,4 +1,12 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": ["@babel/plugin-proposal-class-properties"]
+  "plugins": [
+    [
+      "react-intl",
+      {
+        "messagesDir": "./public/messages/"
+      }
+    ],
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

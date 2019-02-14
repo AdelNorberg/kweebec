@@ -7,13 +7,15 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1366, height: 769, frame: false });
+  mainWindow = new BrowserWindow({
+    minWidth: 1280,
+    minHeight: 720,
+    resizable: true,
+    frame: false,
+  });
 
   // Remove menu
-  mainWindow.setMenu(null);
-
-  // Disabe resize window
-  mainWindow.setResizable(false);
+  // mainWindow.setMenu(null);
 
   // and load the index.html of the app.
   mainWindow.loadURL("http://localhost:8080/sign_in");

@@ -1,0 +1,41 @@
+{
+  "Auth.emailLabel": "Ввод почты",
+  "Auth.passwordLabel": "Пароль",
+  "Auth.passwordRepeatLabel": "Повтор пароля",
+  "Auth.newPasswordLabel": "Введите новый пароль",
+  "Auth.forgotPasswordLink": "Забыли пароль?",
+  "Auth.authButton": "Авторизоваться",
+  "Auth.registrationButton": "Регистрация",
+  "Auth.haveAccount": "Есть аккаунт?",
+  "Auth.loginLink": "Авторизуйся",
+  "Auth.haventAccount": "Нет аккаунта?",
+  "Auth.registrationLink": "Создай его",
+  "Auth.goBackLink": "Вернуться",
+  "Auth.needHelpLink": "Нужна помощь?",
+  "Auth.enterRecoveryCode": "Введите код восстановления",
+  "Auth.continueButton": "Продолжить",
+  "Auth.saveButton": "Сохранить",
+  "Auth.sendCodeDescription": "Введите вашу электронную почту, мы отправим на нее код для восстановления пароля",
+
+  "TopNav.questsItemLabel": "Мои задания",
+  "TopNav.privilegeItemLabel": "Привилегии",
+  "TopNav.rankItemLabel": "Рейтинг",
+  "TopNav.lootItemLabel": "Сундуки",
+
+  "Communication.friendsLabel": "Друзья",
+  "Communication.friendsEmptyLabel": "Добавьте друга",
+  "Communication.groupsLabel": "Групповые чаты",
+  "Communication.groupsEmptyLabel": "Добавьте чат",
+
+  "SearchInput.placeholder": "Поиск друзей",
+
+  "FriendItem.playingStatusLabel": "в игре",
+  "FriendItem.waitingStatusLabel": "ожидает",
+  "FriendItem.offlineStatusLabel": "оффлайн",
+
+  "Settings.profileTabLabel": "Профиль",
+  "Settings.voiceTabLabel": "Голос",
+  "Settings.notificationsTabLabel": "Уведомления",
+  "Settings.widgetsTabLabel": "Виджеты",
+  "Settings.exitTabLabel": "Выход"
+}

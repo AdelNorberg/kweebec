@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { FormattedMessage, defineMessages } from "react-intl";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -23,8 +24,7 @@ const Avatar = styled.div`
   height: 32px;
   width: 32px;
   border-radius: 50%;
-  background: ${({ avatar }) =>
-    avatar ? `url(${avatar}) no-repeat` : "#44464b"};
+  background: ${({ avatar }) => `#44464b url(${avatar}) no-repeat`};
   background-size: cover;
 `;
 const CircleStatus = styled.div`
@@ -38,6 +38,7 @@ const CircleStatus = styled.div`
 `;
 const RightBlock = styled.div`
   font-size: 13px;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
 `;
@@ -48,21 +49,36 @@ const LabelStatus = styled.span`
   color: ${({ color }) => color};
 `;
 
-class FriendItem extends React.Component {
-  getStatusSettings = status => {
+class FriendItem extends Component {
+  getStatusColor = status => {
     switch (status) {
       case 1:
-        return { color: "#2ed567", label: "в игре" };
+        return "#2ed567";
       case 2:
-        return { color: "#28ACD6", label: "ожидает" };
+        return "#28ACD6";
       case 3:
-        return { color: "#6D6D6D", label: "оффлайн" };
+        return "#6D6D6D";
     }
   };
 
+  messages = defineMessages({
+    1: {
+      id: "FriendItem.playingStatusLabel",
+      defaultMessage: "в игре",
+    },
+    2: {
+      id: "FriendItem.waitingStatusLabel",
+      defaultMessage: "ожидает",
+    },
+    3: {
+      id: "FriendItem.offlineStatusLabel",
+      defaultMessage: "оффлайн",
+    },
+  });
+
   render() {
     const { name, avatar, status } = this.props;
-    const { color, label } = this.getStatusSettings(status);
+    const color = this.getStatusColor(status);
     return (
       <Wrapper>
         <LeftBlock>
@@ -71,7 +87,9 @@ class FriendItem extends React.Component {
         </LeftBlock>
         <RightBlock>
           <Name>{name}</Name>
-          <LabelStatus color={color}>{label}</LabelStatus>
+          <LabelStatus color={color}>
+            <FormattedMessage {...this.messages[status]} />
+          </LabelStatus>
         </RightBlock>
       </Wrapper>
     );

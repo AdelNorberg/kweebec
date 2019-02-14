@@ -1,0 +1,41 @@
+{
+  "Auth.emailLabel": "Email",
+  "Auth.passwordLabel": "Password",
+  "Auth.passwordRepeatLabel": "Password again",
+  "Auth.newPasswordLabel": "Enter new password",
+  "Auth.forgotPasswordLink": "Forgot your password?",
+  "Auth.authButton": "Log in",
+  "Auth.registrationButton": "Sign Up",
+  "Auth.haveAccount": "Have an account?",
+  "Auth.loginLink": "Log in",
+  "Auth.haventAccount": "Don't have an account?",
+  "Auth.registrationLink": "Sign Up",
+  "Auth.goBackLink": "Go back",
+  "Auth.needHelpLink": "Need help?",
+  "Auth.enterRecoveryCode": "Enter recovery code",
+  "Auth.continueButton": "Continue",
+  "Auth.saveButton": "Save",
+  "Auth.sendCodeDescription": "Enter your email and we'll send you recovery code",
+
+  "TopNav.questsItemLabel": "Quests",
+  "TopNav.privilegeItemLabel": "Privilege",
+  "TopNav.rankItemLabel": "Rank",
+  "TopNav.lootItemLabel": "Loot",
+
+  "Communication.friendsLabel": "Friends",
+  "Communication.friendsEmptyLabel": "Add friend",
+  "Communication.groupsLabel": "Group chats",
+  "Communication.groupsEmptyLabel": "Add chat",
+
+  "SearchInput.placeholder": "Filter",
+
+  "FriendItem.playingStatusLabel": "in game",
+  "FriendItem.waitingStatusLabel": "waiting",
+  "FriendItem.offlineStatusLabel": "offline",
+
+  "Settings.profileTabLabel": "Account",
+  "Settings.voiceTabLabel": "Voice",
+  "Settings.notificationsTabLabel": "Notifications",
+  "Settings.widgetsTabLabel": "Widgets",
+  "Settings.exitTabLabel": "Exit"
+}

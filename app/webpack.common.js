@@ -35,13 +35,13 @@ module.exports = {
         use: ["@svgr/webpack"],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|jpg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot|otf|jpg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: "file-loader",
             options: {
               name: "[name].[ext]",
-              outputPath: "fonts/",
+              outputPath: "assets/",
             },
           },
         ],

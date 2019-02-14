@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Item = styled.div`
-  padding: 20px 21px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 21px;
+  height: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
