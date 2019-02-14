@@ -6,7 +6,7 @@ type Balance {
   coin: Int!
 }
 
-type Frined {
+type Friend {
   url: String!
   nickname: String!
   status: Int!
@@ -16,7 +16,7 @@ type AuthData {
   email: String!
   balance: Balance!
   nickname: String!
-  friends: [Frined]!
+  friends: [Friend]!
   groups: [String]!
   notifications: [String]!
 }
